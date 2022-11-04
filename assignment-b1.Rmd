@@ -1,0 +1,100 @@
+---
+title: "Assignment B1"
+output: github_document
+---
+
+## Required packages
+```{r}
+suppressPackageStartupMessages(library(datateachr))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(testthat))
+```
+
+## Exercise 1&2: Make and document a Function
+```{r}
+#' @title Summarize numerical column statistical features by group
+#' @details
+#' Summarize statistical features of a numerical column in the data by group.
+#' @param data A data frame contains data to be analyzed.
+#' @param group the name of the variable that needs to group by.
+#' @param column the name of the column to be summarized.
+#' @return A tibble that contains summarized statistical features of given column by group.
+summarize_by_group <- function (data, group, column) {
+  
+  # check if the data is data frame type
+  stopifnot(is.data.frame(data))
+  
+  # convert input column into string name
+  group_name <- rlang::as_label(rlang::enquo(group))
+  column_name <- rlang::as_label(rlang::enquo(column))
+  
+  # check existence of given columns
+  if (!(group_name %in% colnames(data)))
+    stop("'", group_name, "' does not exist in the data")
+  
+  if (!(column_name %in% colnames(data)))
+    stop("'", column_name, "' does not exist in the data")
+  
+  # get column data type
+  column_type <- data %>% select({{column}}) %>% summarize_all(class)
+  
+  # check whether the column is numeric
+  if (column_type[[1]] != "numeric")
+    stop("'", column_name, "' data type must be numeric")
+  
+  # summarize statistical features of the column per group
+  data %>% group_by({{group}}) %>% summarize(mean = mean({{column}}),
+            range=max({{column}}) - min({{column}}), max=max({{column}}),
+            min=min({{column}}), sd=sd({{column}}))
+}
+
+```
+
+
+## Exercise 3: Include examples
+Summarize column statistical features in `cancer_sample` dataset.
+
+Summarize statistical features of radius_mean in cancer_sample
+```{r}
+summarize_by_group(cancer_sample, diagnosis, radius_mean)
+```
+
+
+Summarize statistical features of smoothness_mean in cancer_sample
+```{r}
+summarize_by_group(cancer_sample, diagnosis, smoothness_mean)
+```
+
+
+Test column existence validation. An error is expected since `smoothness_no` does not exist in `cancer_sample`.
+```{r, error = TRUE}
+summarize_by_group(cancer_sample, diagnosis, smoothness_no)
+```
+
+
+## Exercise 4: Test the Function
+At least three non-redundant uses of an expect_() function for testing
+
+```{r}
+test_that("Input validation in summarize_by_group", {
+    expect_error(summarize_by_group(cancer_sample, diagnosis, radius_me))
+    expect_error(summarize_by_group(cancer_sample, NA, fractal_dimension_mean))
+    expect_error(summarize_by_group(numeric(0), NA, compactness_mean))
+})
+```
+
+
+```{r}
+test_that("summarize_by_group outputs equal to known hash", {
+    expect_known_hash(summarize_by_group(cancer_sample, diagnosis, radius_mean), "86b")
+    expect_known_hash(summarize_by_group(cancer_sample, diagnosis, smoothness_mean), "f9b")
+})
+```
+
+```{r}
+test_that("summarize_by_group output data type is tibble", {
+    expect_true(is_tibble(summarize_by_group(cancer_sample, diagnosis, texture_mean)))
+    expect_false(any(is.na(summarize_by_group(cancer_sample, diagnosis, compactness_mean))))
+})
+```
+
