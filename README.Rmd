@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# SummarizeByGroup
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of SummarizeByGroup is to summarize statistical features of a numerical column in the given data by group.
+
+## Installation
+
+You can install the development version of SummarizeByGroup from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-Xiaoting718")
+```
+
+## Example
+
+This is a basic example which shows you how to summarize statistical features of radius_mean in cancer_sample:
+
+```{r example}
+library(dplyr)
+library(datateachr)
+library(SummarizeByGroup)
+summarize_by_group(cancer_sample, diagnosis, radius_mean)
+```
