@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: 
     person("Xiaoting", "Li", , "xiaoting.li2@mail.mcgill.ca", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Summarize statistical features of a numerical column in the given dataset by group.
+Description: This package contains a function to summarize the statistical features of a numerical column in the given dataset by a group.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

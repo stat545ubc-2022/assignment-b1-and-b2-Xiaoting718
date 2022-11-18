@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2022 assignment-b1-and-b2-Xiaoting718 authors
+Copyright (c) 2022 SummarizeByGroup authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -6,8 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of SummarizeByGroup is to summarize statistical features of a
-numerical column in the given data by group.
+The goal of SummarizeByGroup package is to summarize the statistical
+features of a numerical column in the given data by a group.
 
 ## Installation
 
@@ -21,8 +21,8 @@ devtools::install_github("stat545ubc-2022/assignment-b1-and-b2-Xiaoting718")
 
 ## Example
 
-This is a basic example which shows you how to summarize statistical
-features of radius_mean in cancer_sample:
+This is a basic example that shows how to summarize the statistical
+features of radius_mean in cancer_sample by diagnosis group:
 
 ``` r
 library(dplyr)

@@ -1,9 +1,9 @@
 #' @title Summarize numerical column statistical features by group
 #' @details
-#' Summarize statistical features of a numerical column in the data by group.
+#' This function is to summarize the statistical features of a numerical column in the given dataset by a group.
 #' @param data A data frame contains data to be analyzed.
-#' @param group the name of the variable that needs to group by.
-#' @param column the name of the column to be summarized.
+#' @param group The name of the variable that needs to group by.
+#' @param column The name of the column to be summarized.
 #' @return A tibble that contains summarized statistical features of given column by group.
 #' @export
 #'

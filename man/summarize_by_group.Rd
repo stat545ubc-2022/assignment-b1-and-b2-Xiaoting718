@@ -9,9 +9,9 @@ summarize_by_group(data, group, column)
 \arguments{
 \item{data}{A data frame contains data to be analyzed.}
 
-\item{group}{the name of the variable that needs to group by.}
+\item{group}{The name of the variable that needs to group by.}
 
-\item{column}{the name of the column to be summarized.}
+\item{column}{The name of the column to be summarized.}
 }
 \value{
 A tibble that contains summarized statistical features of given column by group.
@@ -20,7 +20,7 @@ A tibble that contains summarized statistical features of given column by group.
 Summarize numerical column statistical features by group
 }
 \details{
-Summarize statistical features of a numerical column in the data by group.
+This function is to summarize the statistical features of a numerical column in the given dataset by a group.
 }
 \examples{
 library(datateachr)
